@@ -1,5 +1,6 @@
 package com.dahae.weeklytestspring.spring0610.controller;
 
+import com.dahae.weeklytestspring.spring0610.dto.ResponseDto;
 import com.dahae.weeklytestspring.spring0610.dto.UserDto;
 import com.dahae.weeklytestspring.spring0610.model.User;
 import com.dahae.weeklytestspring.spring0610.service.UserService;
@@ -38,10 +39,8 @@ public class UserController {
     }
 
     @GetMapping("/recommend/{id}")
-    public String recommendUser(@PathVariable Long id) {
+    public ResponseDto recommendUser(@PathVariable Long id) {
         List<User> userList = userService.recommend(id);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result", userList);
-        return jsonObject.toString();
+        return new ResponseDto(userList);
     }
 }
